@@ -10,6 +10,9 @@ import Header from "./components/Headers/Header";
 import News from "./Pages/News/News";
 import "./App.css";
 import AddNews from './Pages/News/AddNews';
+import Donations from './Pages/Donation/Donation';
+import AddProducts from './Pages/Products/addProducts';
+import Products from './Pages/Products/Products';
 const App = () => {
   const darkMode = useSelector((state) => state.darkMode);
   const theme = React.useMemo(
@@ -32,6 +35,9 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/news" element={<News />} />
               <Route path="/addnews" element={<AddNews />} />
+              <Route path="/donations" element={<Donations />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/addProducts" element={<AddProducts/>} />
             </Routes>
         </Box>
       </Box>

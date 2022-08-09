@@ -32,7 +32,7 @@ export default function ClippedDrawer() {
           <Link to="/" sx={{ flexGrow: 1 }}>
             <img src="/assets/headerlogo.png" alt="logo header" height="50" />
           </Link>
-          <Toolbar sx={{ flexGrow: 1 }}/>
+          <Toolbar sx={{ flexGrow: 1 }} />
           <IconButton
             sx={{ ml: 1 }}
             onClick={() => {
@@ -59,21 +59,24 @@ export default function ClippedDrawer() {
         <Box sx={{ overflow: "auto" }}>
           <List>
             {Object.entries(portalsHall).map(([index, data]) => (
-              <ListItem key={index} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>{data.icon}</ListItemIcon>
-                  <ListItemText>
-                    <Typography
-                      component={Link}
-                      style={{textDecoration: 'none'}}
-                      to={data.page}
-                      color="text.secondary"
-                    >
-                      {data.name}
-                    </Typography>
-                  </ListItemText>
-                </ListItemButton>
-              </ListItem>
+              <div key={index}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>{data.icon}</ListItemIcon>
+                    <ListItemText>
+                      <Typography
+                        component={Link}
+                        style={{ textDecoration: "none" }}
+                        to={data.page}
+                        color="text.secondary"
+                      >
+                        {data.name}
+                      </Typography>
+                    </ListItemText>
+                  </ListItemButton>
+                </ListItem>
+                {data.divider && <Divider />}
+              </div>
             ))}
           </List>
           <Divider />

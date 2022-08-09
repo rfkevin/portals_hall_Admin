@@ -7,54 +7,47 @@ import {
   Filter,
   GridComponent,
   Inject,
-  Edit,
   Page,
   Selection,
   Sort,
   Toolbar,
 } from "@syncfusion/ej2-react-grids";
 import React from "react";
-import { newsGrid } from "./grid";
+import { donationsgrid } from "./grid";
 import useStyles from "./style";
 
-const News = () => {
+const Donations = () => {
   const baseUrl = process.env.REACT_APP_BASE_URL;
   const data = new DataManager({
     adaptor: new UrlAdaptor(),
-    url: baseUrl + "/news/get",
-    removeUrl: baseUrl + "/news/delete",
+    url: baseUrl + "/donations/list",
   });
-  const onActionFailure = (e) => {
-    const span = document.createElement("span");
-    if (this.grid) {
-      this.grid.element.parentNode.insertBefore(span, this.grid.element);
-      span.style.color = "#FF0000";
-      span.innerHTML = "Server exception: 404 Not found";
-    }
-  };
   const classes = useStyles();
   return (
     <>
       <Paper elevation={4} className={classes.paper}>
         <Typography className={classes.title} variant="h4" align="center">
-          News
+          Donations
         </Typography>
         <GridComponent
           id="gridcomp"
           dataSource={data}
           allowPaging
           allowSorting
-          toolbar={["Delete"]}
-          editSettings={{ allowDeleting: true }}
+          editSettings={{
+            allowDeleting: false,
+            allowEditing: false,
+            allowUpdating: false,
+          }}
           width="auto"
         >
           <ColumnsDirective>
-            {newsGrid.map((item, index) => (
+            {donationsgrid.map((item, index) => (
               <ColumnDirective key={index} {...item} />
             ))}
           </ColumnsDirective>
           <Inject
-            services={[Selection, Sort, Filter, Page, Toolbar, ContextMenu, Edit]}
+            services={[Selection, Sort, Filter, Page, Toolbar, ContextMenu]}
           />
         </GridComponent>
       </Paper>
@@ -62,4 +55,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Donations;
